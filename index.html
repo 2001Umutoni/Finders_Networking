@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Finders Cyber Security Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --chocolate: #7b3f00;
+            --chocolate-dark: #4e260e;
+            --chocolate-light: #a0522d;
+            --white: #fff;
+            --text-dark: #2d1a06;
+            --text-light: #fff;
+            --nav-bg: var(--chocolate);
+            --header-bg: var(--chocolate-dark);
+            --main-bg: var(--white);
+            --section-bg: #f7f3ef;
+            --input-bg: #f3e9e2;
+            --input-text: #2d1a06;
+            --btn-bg: var(--chocolate);
+            --btn-text: var(--white);
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: var(--main-bg);
+            color: var(--text-dark);
+            transition: background 0.3s, color 0.3s;
+        }
+        body.dark {
+            --nav-bg: var(--chocolate-dark);
+            --header-bg: var(--chocolate);
+            --main-bg: #2d1a06;
+            --section-bg: #4e260e;
+            --input-bg: #3e2412;
+            --input-text: #fff;
+            --btn-bg: var(--chocolate-light);
+            --btn-text: #fff;
+            color: var(--text-light);
+        }
+        header {
+            background: var(--header-bg);
+            padding: 20px 0 10px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: var(--btn-bg);
+        }
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 1.2em;
+            color: #e0c9b6;
+        }
+        nav {
+            background: var(--nav-bg);
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 12px 0;
+            margin-bottom: 0;
+        }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #ffe4c4;
+        }
+        .toggle-btn {
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+        #login-form {
+            background: var(--section-bg);
+            max-width: 350px;
+            margin: 60px auto 0 auto;
+            padding: 30px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+        #login-form h2 {
+            color: var(--btn-bg);
+            margin-bottom: 20px;
+        }
+        #login-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            background: var(--input-bg);
+            color: var(--input-text);
+            font-size: 1em;
+        }
+        #login-form button {
+            width: 100%;
+            padding: 10px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        #login-error {
+            color: #c0392b;
+            margin-top: 10px;
+            display: none;
+        }
+        #main-content {
+            display: none;
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--section-bg);
+            border-radius: 8px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        #main-content h2, #main-content h3 {
+            color: var(--btn-bg);
+            margin-top: 0;
+        }
+        .services-list {
+            list-style: none;
+            padding: 0;
+        }
+        .services-list li {
+            margin: 18px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .services-list li:before {
+            content: "✔";
+            color: var(--btn-bg);
+            position: absolute;
+            left: 0;
+        }
+        #logout-btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            border-radius: 4px;
+            padding: 8px 18px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 30px;
+            float: right;
+        }
+        .qrcode-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .qrcode-container input {
+            width: 70%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: var(--input-bg);
+            color: var(--input-text);
+        }
+        .qrcode-container button {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            border-radius: 4px;
+            padding: 8px 18px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        #qrcode-img {
+            margin-top: 15px;
+            border: 6px solid var(--btn-bg);
+            border-radius: 10px;
+            background: var(--white);
+        }
+        @media (max-width: 600px) {
+            #main-content, #login-form {
+                padding: 20px 10px;
+            }
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .toggle-btn {
+                right: 10px;
+                top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Finders</h1>
+        <p>Cyber Security Services for a Safer Digital World</p>
+        <button class="toggle-btn" onclick="toggleTheme()" id="theme-toggle">🌙 Dark</button>
+    </header>
+    <nav>
+        <a href="#home" onclick="showSection('home')">Home</a>
+        <a href="#about" onclick="showSection('about')">About Us</a>
+        <a href="#services" onclick="showSection('services')">Services</a>
+        <a href="#contact" onclick="showSection('contact')">Contact Us</a>
+        <a href="#qrcode" onclick="showSection('qrcode')">QR Code</a>
+    </nav>
+
+    <!-- Login Form -->
+    <div id="login-form">
+        <h2>Client Login</h2>
+        <input type="text" id="username" placeholder="Username" autocomplete="username" required>
+        <input type="password" id="password" placeholder="Password" autocomplete="current-password" required>
+        <button onclick="login()">Login</button>
+        <div id="login-error">Invalid username or password.</div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <section id="home-section">
+            <h2>Welcome to Finders Cyber Security Services</h2>
+            <p>
+                At Finders, we protect your business from digital threats with cutting-edge cyber security solutions. 
+                Our expert team ensures your data, systems, and reputation remain secure in an ever-evolving threat landscape.
+            </p>
+        </section>
+        <section id="about-section" style="display:none;">
+            <h2>About Us</h2>
+            <p>
+                Finders is a leading cyber security company with years of experience in safeguarding organizations of all sizes.
+                Our mission is to provide robust, reliable, and innovative security solutions tailored to your needs.
+            </p>
+        </section>
+        <section id="services-section" style="display:none;">
+            <h2>Our Services</h2>
+            <ul class="services-list">
+                <li>Vulnerability Assessment & Penetration Testing</li>
+                <li>Security Audits & Compliance Consulting</li>
+                <li>Incident Response & Forensics</li>
+                <li>Network & Endpoint Security</li>
+                <li>Cloud Security Solutions</li>
+                <li>Security Awareness Training</li>
+            </ul>
+        </section>
+        <section id="contact-section" style="display:none;">
+            <h2>Contact Us</h2>
+            <p>
+                Email: <a href="mailto:info@finderscyber.com" style="color:var(--btn-bg);">info@finderscyber.com</a><br>
+                Phone: +1 234 567 8901<br>
+                Address: 123 Cyber Lane, Secure City, Country
+            </p>
+        </section>
+        <section id="qrcode-section" style="display:none;">
+            <h2>QR Code</h2>
+            <div class="qrcode-container">
+                <input type="text" id="qrcode-url" placeholder="Enter URL for QR code" value="https://finderscyber.com">
+                <button onclick="generateQRCode()">Generate QR Code</button>
+                <div>
+                    <img id="qrcode-img" src="https://chart.googleapis.com/chart?cht=qr&chs=180x180&chl=https://finderscyber.com" alt="Finders QR Code">
+                </div>
+                <p>Scan to visit the link</p>
+            </div>
+        </section>
+        <button id="logout-btn" onclick="logout()">Logout</button>
+        <div style="clear:both"></div>
+    </div>
+
+    <script>
+        // Login logic
+        function login() {
+            // Demo credentials: username: finders, password: 123
+            const user = document.getElementById('username').value.trim();
+            const pass = document.getElementById('password').value.trim();
+            if (user === 'finders' && pass === '123') {
+                document.getElementById('login-form').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                showSection('home');
+                document.getElementById('login-error').style.display = 'none';
+            } else {
+                document.getElementById('login-error').style.display = 'block';
+            }
+        }
+        function logout() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+        function showSection(section) {
+            const sections = ['home', 'about', 'services', 'contact', 'qrcode'];
+            sections.forEach(s => {
+                document.getElementById(s + '-section').style.display = (s === section) ? 'block' : 'none';
+            });
+        }
+
+        // Theme toggle logic
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('theme-toggle');
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                btn.textContent = "☀️ Light";
+            } else {
+                btn.textContent = "🌙 Dark";
+            }
+        }
+
+        // QR code generator logic
+        function generateQRCode() {
+            const url = document.getElementById('qrcode-url').value.trim();
+            const img = document.getElementById('qrcode-img');
+            if (url) {
+                img.src = "https://chart.googleapis.com/chart?cht=qr&chs=180x180&chl=" + encodeURIComponent(url);
+            }
+        }
+    </script>
+</body>
+</html>
