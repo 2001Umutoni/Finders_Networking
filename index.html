@@ -44,6 +44,7 @@
             padding: 20px 0 10px 0;
             text-align: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: relative;
         }
         header h1 {
             margin: 0;
@@ -207,6 +208,10 @@
                 right: 10px;
                 top: 10px;
             }
+            .team-row {
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
         }
     </style>
 </head>
@@ -241,6 +246,23 @@
                 At Finders, we protect your business from digital threats with cutting-edge cyber security solutions. 
                 Our expert team ensures your data, systems, and reputation remain secure in an ever-evolving threat landscape.
             </p>
+            <div style="margin-top:40px;">
+                <h3 style="color:var(--btn-bg);">Meet our Team</h3>
+                <div class="team-row" style="display:flex; flex-wrap:wrap; gap:30px; justify-content:center; margin-top:20px;">
+                    <div style="text-align:center;">
+                        <img src="image/Angel.jpeg" alt="Umutoni Uwujinema Ange Ariane" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid var(--btn-bg); background:#fff;">
+                        <div style="margin-top:10px; font-weight:bold;">Umutoni Uwujinema Ange Ariane</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <img src="image/Gabby.jpeg" alt="Ntakirutimana Angelique" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid var(--btn-bg); background:#fff;">
+                        <div style="margin-top:10px; font-weight:bold;">Ntakirutimana Angelique</div>
+                    </div>
+                    <div style="text-align:center;">
+                        <img src="image/Prisca.jpeg" alt="Uwiringiyimana Prisca" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:4px solid var(--btn-bg); background:#fff;">
+                        <div style="margin-top:10px; font-weight:bold;">Uwiringiyimana Prisca</div>
+                    </div>
+                </div>
+            </div>
         </section>
         <section id="about-section" style="display:none;">
             <h2>About Us</h2>
@@ -264,7 +286,7 @@
             <h2>Contact Us</h2>
             <p>
                 Email: <a href="mailto:info@finderscyber.com" style="color:var(--btn-bg);">info@finderscyber.com</a><br>
-                Phone: +1 234 567 8901<br>
+                Phone: +250 785 108 177<br>
                 Address: 123 Cyber Lane, Secure City, Country
             </p>
         </section>
