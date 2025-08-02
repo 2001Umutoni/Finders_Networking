@@ -190,8 +190,9 @@
             font-size: 1em;
             cursor: pointer;
         }
-        #qrcode-img {
+        #qrcode {
             margin-top: 15px;
+            display: inline-block;
             border: 6px solid var(--btn-bg);
             border-radius: 10px;
             background: var(--white);
@@ -214,6 +215,8 @@
             }
         }
     </style>
+    <!-- QRCode.js library (use local file or CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <header>
@@ -284,19 +287,17 @@
         </section>
         <section id="contact-section" style="display:none;">
             <h2>Contact Us</h2>
-            <p>
+           <p>
                 Email: <a href="mailto:info@finderscyber.com" style="color:var(--btn-bg);">info@finderscyber.com</a><br>
                 Phone: +250 785 108 177<br>
                 Address: 123 Cyber Lane, Secure City, Country
             </p>
         </section>
-        <section id="qrcode-section" style="display:none;">
+         <section id="qrcode-section" style="display:none;">
             <h2>QR Code</h2>
             <div class="qrcode-container">
-                <input type="text" id="qrcode-url" placeholder="Enter URL for QR code" value="https://finderscyber.com">
-                <button onclick="generateQRCode()">Generate QR Code</button>
-                <div>
-                    <img id="qrcode-img" src="https://chart.googleapis.com/chart?cht=qr&chs=180x180&chl=https://finderscyber.com" alt="Finders QR Code">
+                <div style="margin-top:20px;">
+                    <img src="image/Finders.jpeg" alt="Finders QR Code" style="width:180px; height:180px; border:6px solid var(--btn-bg); border-radius:10px; background:#fff;">
                 </div>
                 <p>Scan to visit the link</p>
             </div>
@@ -345,14 +346,27 @@
             }
         }
 
-        // QR code generator logic
+        // QR code generator logic using QRCode.js
         function generateQRCode() {
             const url = document.getElementById('qrcode-url').value.trim();
-            const img = document.getElementById('qrcode-img');
+            const qrcodeDiv = document.getElementById('qrcode');
+            qrcodeDiv.innerHTML = ""; // Clear previous QR code
             if (url) {
-                img.src = "https://chart.googleapis.com/chart?cht=qr&chs=180x180&chl=" + encodeURIComponent(url);
+                new QRCode(qrcodeDiv, {
+                    text: url,
+                    width: 180,
+                    height: 180,
+                    colorDark : "#7b3f00",
+                    colorLight : "#fff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
             }
         }
+
+        // Generate QR code on page load for default value
+        document.addEventListener("DOMContentLoaded", function() {
+            generateQRCode();
+        });
     </script>
 </body>
 </html>
